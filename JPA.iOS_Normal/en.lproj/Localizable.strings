@@ -1,0 +1,27 @@
+//Publications Strings
+
+"LatestJobTitle"="Latest Jobs";
+"DLoad"="Downloading Jobs";
+"Wait"="Please wait...";
+"Header"="Top 100";
+
+
+
+//Companies Strings
+"CompaniesTitle"="Available Companies";
+
+
+
+//LeftMenu Strings
+"Navigation"="Navigation";
+"Home"="Home";
+
+//Settings Strings
+"Settings"="Settings";
+"Network"="Network";
+"NotificationsAllow"="Allow Push Notifications";
+
+//Search Strings
+"Search"="Search";
+"Network"="Network not available";
+"NetworkMessage"="Please connect to the internet in order to proceed";

@@ -1,0 +1,7 @@
+.DS_Store
+JPA.iOS/
+*.log
+*/obj/
+*/bin/
+packages/
+Components/

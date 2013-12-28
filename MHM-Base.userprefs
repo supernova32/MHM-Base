@@ -1,0 +1,38 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="JPA.Android/Activities/PublicationActivity.cs">
+    <Files>
+      <File FileName="JPA.Android/Adapters/DrawerAdapter.cs" Line="1" Column="1" />
+      <File FileName="JPA.Android/MainActivity.cs" Line="1" Column="1" />
+      <File FileName="JPA.Android/Fragments/CompaniesFragment.cs" Line="1" Column="1" />
+      <File FileName="JPA.Android/Fragments/PublicationsFragment.cs" Line="17" Column="46" />
+      <File FileName="JPA.Android/Activities/PublicationActivity.cs" Line="29" Column="20" />
+      <File FileName="MHM-Base/Services/PublicationsParser.cs" Line="47" Column="52" />
+      <File FileName="JPA.Android/Helpers/DatabaseHelper.cs" Line="20" Column="3" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="JPA.Android" expanded="True">
+            <Node name="ComponentReferenceFolder" expanded="True" />
+            <Node name="Activities" expanded="True">
+              <Node name="PublicationActivity.cs" selected="True" />
+            </Node>
+            <Node name="Helpers" expanded="True" />
+            <Node name="Properties" expanded="True" />
+          </Node>
+          <Node name="MHM-Base" expanded="True">
+            <Node name="Services" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/pato/XamarinProjects/MHM-Base/JPA.iOS/JPA.iOSViewController.cs" line="38" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.JPA.Android MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" AndroidDeviceId-Debug="014E281E1600D013" />
+</Properties>
