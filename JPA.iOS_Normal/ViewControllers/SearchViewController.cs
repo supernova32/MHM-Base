@@ -45,7 +45,10 @@ namespace JPA.iOS_Normal
 						TableView.ReloadData ();
 					}), searchBar.Text);
 				} else {
-					new UIAlertView ("Network".t(), "NetworkMessage".t(), null, "Ok", null).Show ();
+					_parser.LocalSearch (publications => InvokeOnMainThread (() => {
+						TableView.Source = new PublicationsViewSource (publications, this, _db);
+						TableView.ReloadData ();
+					}), searchBar.Text);
 				}			
 			}			
 		}

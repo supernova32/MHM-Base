@@ -13,8 +13,9 @@ namespace MHMBase
 	public class PublicationsParser
 	{
 		const string _baseUrl = "https://insomniware.com/publications.xml";
+		readonly SQLiteConnection db = DatabaseHelper.Instance.Connection;
 
-		public void UpdatePublications(Action<IList<Publication>> callback, SQLiteConnection db) {
+		public void UpdatePublications(Action<IList<Publication>> callback) {
 			db.CreateTable<Publication>();
 			var client = new WebClient ();
 			client.DownloadStringCompleted += (sender, args) => {
@@ -36,13 +37,18 @@ namespace MHMBase
 						Console.WriteLine ("PublicationParser: Duplicate detected");
 					}				
 				}
-				callback(GetPublications(db));
+				callback(Publications);
 			};
 
 			client.DownloadStringAsync (new Uri (_baseUrl));
 		}
 
-		public void SendSearchParameters(Action<IList<Publication>> callback, string parameters) {
+		public void LocalSearch (Action<IList<Publication>> callback, string query) {
+			var publications = db.Query<Publication> ("SELECT * FROM publications WHERE FullDescription LIKE ? OR ShortDescription LIKE ? OR Title LIKE ?", "%"+query+"%", "%"+query+"%", "%"+query+"%");
+			callback (publications);		
+		}
+
+		public void SendSearchParameters (Action<IList<Publication>> callback, string parameters) {
 			var http = (HttpWebRequest)WebRequest.Create(new Uri("http://192.168.0.104:3000/api/v1/publications"));
 			http.Accept = "application/json";
 			http.ContentType = "application/json";
@@ -99,9 +105,10 @@ namespace MHMBase
 //		
 //		}
 
-		public IList<Publication> GetPublications (SQLiteConnection db) {
-			var publications = db.Table<Publication>().ToList();
-			return publications;
+		public IList<Publication> Publications {
+			get {
+				return db.Table<Publication>().ToList();			
+			}
 		}
 	}
 }

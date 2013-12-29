@@ -120,20 +120,32 @@ namespace JPA.Android
 		void HandleIntent (Intent intent) {
 			if (Intent.ActionSearch.Equals (intent.Action)) {
 				var query = intent.GetStringExtra (SearchManager.Query);
+				var parser = new PublicationsParser ();
 				SetTitle (Resource.String.search_results);
 				mDrawerList.SetItemChecked (0, false);
 				if (cnHelper.NetworkAvailable ()) {
-					var parser = new PublicationsParser ();
-					parser.SendSearchParameters (publications => RunOnUiThread(() => {
+					parser.SendSearchParameters (publications => RunOnUiThread (() => {
 						var publicationsList = FindViewById<ListView> (Resource.Id.Publications);
 						publicationsList.Adapter = new PublicationsListAdapter (this.LayoutInflater, publications);
 						publicationsList.ItemClick += (sender, e) => {
 							var pub = publications [e.Position];
-							var myIntent = new Intent(this, typeof(PublicationActivity));
-							myIntent.PutExtra("remote_id", pub.RemoteId);
-							StartActivity(myIntent);
+							var myIntent = new Intent (this, typeof(PublicationActivity));
+							myIntent.PutExtra ("remote_id", pub.RemoteId);
+							StartActivity (myIntent);
 						};
 					}), query);				
+				} else {
+					parser.LocalSearch (publications => RunOnUiThread (() => {
+						var publicationsList = FindViewById<ListView> (Resource.Id.Publications);
+						publicationsList.Adapter = new PublicationsListAdapter (this.LayoutInflater, publications);
+						publicationsList.ItemClick += (sender, e) => {
+							var pub = publications [e.Position];
+							var myIntent = new Intent (this, typeof(PublicationActivity));
+							myIntent.PutExtra ("pub_id", pub.Id);
+							StartActivity (myIntent);
+						};
+					}) , query);
+						
 				}			
 			}		
 		}

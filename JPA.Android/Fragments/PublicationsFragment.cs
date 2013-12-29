@@ -72,7 +72,7 @@ namespace JPA.Android
 							StartActivity(intent);
 						};
 						AndHUD.Shared.Dismiss (Activity);
-					}), dbHelper.Connection);
+					}));
 				} else {
 					SetupTable (_companyId);
 				}
@@ -86,7 +86,7 @@ namespace JPA.Android
 
 		public void SetupTable (int companyId) {
 			if (companyId == 0) {
-				var publications = parser.GetPublications (dbHelper.Connection);
+				var publications = parser.Publications;
 				var publicationsList = layout.FindViewById<ListView> (Resource.Id.Publications);
 				publicationsList.Adapter = new PublicationsListAdapter (_inflater, publications);
 				publicationsList.ItemClick += (sender, e) => {

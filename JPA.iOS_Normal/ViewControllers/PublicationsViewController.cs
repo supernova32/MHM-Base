@@ -60,7 +60,7 @@ namespace JPA.iOS_Normal
 				loading.AddSubview (indicator);
 				RefreshTable (loading);
 			} else if (_fromMenu) {
-				var publications = _parser.GetPublications (_db);
+				var publications = _parser.Publications;
 				TableView.Source = new PublicationsViewSource (publications, this, _db);
 				TableView.ReloadData ();
 			} else {
@@ -89,9 +89,9 @@ namespace JPA.iOS_Normal
 					TableView.ReloadData ();
 					if (loading != null)
 						loading.DismissWithClickedButtonIndex (0, true);
-				}), _db);			
+				}));			
 			} else {
-				var publications = _parser.GetPublications (_db);
+				var publications = _parser.Publications;
 				TableView.Source = new PublicationsViewSource (publications, this, _db);
 				TableView.ReloadData ();
 				if (loading != null)
