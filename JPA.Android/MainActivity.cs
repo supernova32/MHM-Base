@@ -123,9 +123,9 @@ namespace JPA.Android
 				var parser = new PublicationsParser ();
 				SetTitle (Resource.String.search_results);
 				mDrawerList.SetItemChecked (0, false);
+				var publicationsList = FindViewById<ListView> (Resource.Id.Publications);
 				if (cnHelper.NetworkAvailable ()) {
 					parser.SendSearchParameters (publications => RunOnUiThread (() => {
-						var publicationsList = FindViewById<ListView> (Resource.Id.Publications);
 						publicationsList.Adapter = new PublicationsListAdapter (this.LayoutInflater, publications);
 						publicationsList.ItemClick += (sender, e) => {
 							var pub = publications [e.Position];
@@ -136,20 +136,21 @@ namespace JPA.Android
 					}), query);				
 				} else {
 					parser.LocalSearch (publications => RunOnUiThread (() => {
-						var publicationsList = FindViewById<ListView> (Resource.Id.Publications);
-						publicationsList.Adapter = new PublicationsListAdapter (this.LayoutInflater, publications);
+						//publicationsList.Adapter.Dispose ();
+						//publicationsList.Adapter = new PublicationsListAdapter (this.LayoutInflater, publications);
+						var adapter = ((PublicationsListAdapter) publicationsList.Adapter);
+						adapter.Publications = publications;
+						adapter.NotifyDataSetChanged ();
 						publicationsList.ItemClick += (sender, e) => {
-							var pub = publications [e.Position];
+							var pub = adapter.Publications [e.Position];
 							var myIntent = new Intent (this, typeof(PublicationActivity));
 							myIntent.PutExtra ("pub_id", pub.Id);
 							StartActivity (myIntent);
 						};
 					}) , query);
-						
 				}			
 			}		
 		}
-
 	}
 }
 

@@ -17,7 +17,7 @@ namespace JPA.Android
 	class PublicationsListAdapter : BaseAdapter<Publication>
 	{
 		readonly LayoutInflater _context; 
-		readonly IList<Publication> _publications;
+		IList<Publication> _publications;
 
 		public PublicationsListAdapter (LayoutInflater context, IList<Publication> publications) {
 			_context = context;
@@ -43,6 +43,16 @@ namespace JPA.Android
 
 		public override long GetItemId(int position) {
 			return position; 
+		}
+
+		public IList<Publication> Publications {
+			get {
+				return _publications; 
+			
+			}
+			set {
+				_publications = value;				 
+			}
 		}
 
 		public override Publication this[int index] {

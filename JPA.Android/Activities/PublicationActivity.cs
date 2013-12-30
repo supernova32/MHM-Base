@@ -46,7 +46,8 @@ namespace JPA.Android
 		{
 			switch (item.ItemId) {
 			case global::Android.Resource.Id.Home:
-				OnBackPressed ();
+				//OnBackPressed ();
+				NavUtils.NavigateUpFromSameTask (this);
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);

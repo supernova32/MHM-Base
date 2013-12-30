@@ -22,6 +22,7 @@ namespace JPA.Android
 		PublicationsParser parser;
 		DatabaseHelper dbHelper;
 		LayoutInflater _inflater;
+		ListView publicationsList;
 
 		public PublicationsFragment (bool remoteLoad = true, int companyId = 0) {
 			_reload = remoteLoad;
@@ -58,12 +59,12 @@ namespace JPA.Android
 			_inflater = inflater;
 			var cnHelper = ConnectivityHelper.Instance (Activity);
 			layout = inflater.Inflate(Resource.Layout.PublicationsList, container, false);
+			publicationsList = layout.FindViewById<ListView> (Resource.Id.Publications);
 			if (_reload) {
 
 				if (cnHelper.NetworkAvailable ()) {
 					AndHUD.Shared.Show(Activity, "Downloading Jobs", -1, MaskType.Clear);
 					parser.UpdatePublications (publications => Activity.RunOnUiThread (() => {
-						var publicationsList = layout.FindViewById<ListView> (Resource.Id.Publications);
 						publicationsList.Adapter = new PublicationsListAdapter (_inflater, publications);
 						publicationsList.ItemClick += (sender, e) => {
 							var pub = publications [e.Position];
@@ -85,28 +86,23 @@ namespace JPA.Android
 		}
 
 		public void SetupTable (int companyId) {
+			IList<Publication> publications;
+
 			if (companyId == 0) {
-				var publications = parser.Publications;
-				var publicationsList = layout.FindViewById<ListView> (Resource.Id.Publications);
-				publicationsList.Adapter = new PublicationsListAdapter (_inflater, publications);
-				publicationsList.ItemClick += (sender, e) => {
-					var pub = publications [e.Position];
-					var intent = new Intent (Activity, typeof(PublicationActivity));
-					intent.PutExtra ("pub_id", pub.Id);
-					StartActivity (intent);
-				};
+				publications = parser.Publications;
 			} else {
 				var company = dbHelper.Connection.Get<Company> (companyId);
-				var publications = dbHelper.Connection.Table<Publication> ().Where ( p => p.Company.Equals(company.Name)).ToList();
-				var publicationsList = layout.FindViewById<ListView> (Resource.Id.Publications);
-				publicationsList.Adapter = new PublicationsListAdapter (_inflater, publications);
-				publicationsList.ItemClick += (sender, e) => {
-					var pub = publications [e.Position];
-					var intent = new Intent (Activity, typeof(PublicationActivity));
-					intent.PutExtra ("pub_id", pub.Id);
-					StartActivity (intent);
-				};			
+				publications = dbHelper.Connection.Table<Publication> ().Where (p => p.Company.Equals (company.Name)).ToList ();
 			}
+
+			var adapter = new PublicationsListAdapter (_inflater, publications); 
+			publicationsList.Adapter = adapter;
+			publicationsList.ItemClick += (sender, e) => {
+				var pub = adapter.Publications [e.Position];
+				var intent = new Intent (Activity, typeof(PublicationActivity));
+				intent.PutExtra ("pub_id", pub.Id);
+				StartActivity (intent);
+			};
 		}
 	}
 }

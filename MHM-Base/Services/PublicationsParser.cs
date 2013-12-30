@@ -77,26 +77,6 @@ namespace MHMBase
 				Link = (string)item["link"]					
 			}).ToList();
 			callback(publications);
-
-
-//			var client = new WebClient();
-//			client.Headers.Add("Content-Type", "application/json");
-//
-//			var json = @"{query:"+parameters+"}"; 
-
-//			client.UploadDataCompleted += (sender, e) => {
-//				var resultJSON = JObject.Parse (Encoding.UTF8.GetString (e.Result));
-//				IList<Publication> publications = resultJSON["publications"].Select(item => new Publication	{
-//					RemoteId = (string)item["id"],
-//					Title = (string)item["title"],
-//					Company = (string)item["company"],
-//					FullDescription = (string)item["full_description"],
-//					ShortDescription = (string)item["short_description"],
-//					Link = (string)item["link"]					
-//				}).ToList();
-//				callback(publications);
-//			};
-//			client.UploadDataAsync (new Uri ("https://insomniware.com/"), JObject.Parse(json));		
 		}
 
 //		public Publication GetRemotePublication (int remoteId) {
