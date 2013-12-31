@@ -11,6 +11,7 @@ using Android.Widget;
 using Android.Content;
 using Android.Content.PM;
 using MHMBase;
+using System.Threading;
 
 namespace JPA.Android
 {
@@ -124,15 +125,22 @@ namespace JPA.Android
 				SetTitle (Resource.String.search_results);
 				mDrawerList.SetItemChecked (0, false);
 				var publicationsList = FindViewById<ListView> (Resource.Id.Publications);
+				var mLoadingView = FindViewById (Resource.Id.load_status);
+				var mFrameView = FindViewById (Resource.Id.content_frame);
+				mFrameView.Visibility = ViewStates.Gone;
+				mLoadingView.Visibility = ViewStates.Visible;
 				if (cnHelper.NetworkAvailable ()) {
 					parser.SendSearchParameters (publications => RunOnUiThread (() => {
-						publicationsList.Adapter = new PublicationsListAdapter (this.LayoutInflater, publications);
+						var adapter = new PublicationsListAdapter (this.LayoutInflater, publications);
+						publicationsList.Adapter = adapter;
 						publicationsList.ItemClick += (sender, e) => {
-							var pub = publications [e.Position];
+							var pub = adapter.Publications [e.Position];
 							var myIntent = new Intent (this, typeof(PublicationActivity));
 							myIntent.PutExtra ("remote_id", pub.RemoteId);
 							StartActivity (myIntent);
 						};
+						mFrameView.Visibility = ViewStates.Visible;
+						mLoadingView.Visibility = ViewStates.Gone;
 					}), query);				
 				} else {
 					parser.LocalSearch (publications => RunOnUiThread (() => {
@@ -147,6 +155,9 @@ namespace JPA.Android
 							myIntent.PutExtra ("pub_id", pub.Id);
 							StartActivity (myIntent);
 						};
+						Thread.Sleep (2000);
+						mFrameView.Visibility = ViewStates.Visible;
+						mLoadingView.Visibility = ViewStates.Gone;
 					}) , query);
 				}			
 			}		

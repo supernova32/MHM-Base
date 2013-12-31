@@ -12,7 +12,7 @@ namespace MHMBase
 {
 	public class PublicationsParser
 	{
-		const string _baseUrl = "https://insomniware.com/publications.xml";
+		const string _baseUrl = "http://192.168.2.1:3000/publications.xml";
 		readonly SQLiteConnection db = DatabaseHelper.Instance.Connection;
 
 		public void UpdatePublications(Action<IList<Publication>> callback) {
@@ -49,7 +49,7 @@ namespace MHMBase
 		}
 
 		public void SendSearchParameters (Action<IList<Publication>> callback, string parameters) {
-			var http = (HttpWebRequest)WebRequest.Create(new Uri("http://192.168.0.104:3000/api/v1/publications"));
+			var http = (HttpWebRequest)WebRequest.Create(new Uri("http://192.168.2.1:3000/api/v1/publications"));
 			http.Accept = "application/json";
 			http.ContentType = "application/json";
 			http.Method = "POST";

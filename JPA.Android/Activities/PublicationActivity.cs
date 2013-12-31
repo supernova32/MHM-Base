@@ -12,6 +12,7 @@ using MHMBase;
 using Java.IO;
 using Android.Graphics;
 using Android.Support.V4.App;
+using Android.Support.V4.View;
 
 namespace JPA.Android
 {
@@ -51,6 +52,17 @@ namespace JPA.Android
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
+		}
+
+		public override bool OnCreateOptionsMenu (IMenu menu)
+		{
+			MenuInflater.Inflate (Resource.Menu.publication_menu, menu);
+			var shareItem = menu.FindItem (Resource.Id.action_share);
+
+			var mShareActionProvider = MenuItemCompat.GetActionProvider(shareItem);
+			//mShareActionProvider. (getDefaultIntent());
+
+			return base.OnCreateOptionsMenu (menu);
 		}
 	}
 }

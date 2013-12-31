@@ -10,7 +10,7 @@ namespace MHMBase
 {
 	public class CompaniesParser
 	{
-		const string _baseUrl = "https://insomniware.com/companies.xml";
+		const string _baseUrl = "http://192.168.2.1:3000/companies.xml";
 		public bool PopulateCompaniesDB(Action<bool> callback, SQLiteConnection db) {
 			db.CreateTable<Company>();
 			var client = new WebClient ();

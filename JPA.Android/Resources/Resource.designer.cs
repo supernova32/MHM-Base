@@ -67,22 +67,6 @@ namespace JPA.Android
 			global::Base.Android.Resource.String.library_name = global::JPA.Android.Resource.String.library_name;
 		}
 		
-		public partial class Array
-		{
-			
-			// aapt resource value: 0x7f060000
-			public const int planets_array = 2131099648;
-			
-			static Array()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Array()
-			{
-			}
-		}
-		
 		public partial class Attribute
 		{
 			
@@ -145,28 +129,31 @@ namespace JPA.Android
 			public const int ic_action_search = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int ic_drawer = 2130837507;
+			public const int ic_action_share = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int ic_errorstatus = 2130837508;
+			public const int ic_drawer = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_launcher = 2130837509;
+			public const int ic_errorstatus = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int ic_successstatus = 2130837510;
+			public const int ic_launcher = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int Icon = 2130837511;
+			public const int ic_successstatus = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int roundedbg = 2130837512;
+			public const int Icon = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int roundedbgdark = 2130837513;
+			public const int roundedbg = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int splash = 2130837514;
+			public const int roundedbgdark = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int splash = 2130837515;
 			
 			static Drawable()
 			{
@@ -181,56 +168,68 @@ namespace JPA.Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f090000
-			public const int Companies = 2131296256;
+			// aapt resource value: 0x7f080000
+			public const int Companies = 2131230720;
 			
-			// aapt resource value: 0x7f09000d
-			public const int Description = 2131296269;
+			// aapt resource value: 0x7f08000f
+			public const int Description = 2131230735;
 			
-			// aapt resource value: 0x7f090002
-			public const int Name = 2131296258;
+			// aapt resource value: 0x7f080002
+			public const int Name = 2131230722;
 			
-			// aapt resource value: 0x7f09000e
-			public const int Publications = 2131296270;
+			// aapt resource value: 0x7f080011
+			public const int Publications = 2131230737;
 			
-			// aapt resource value: 0x7f09000c
-			public const int Title = 2131296268;
+			// aapt resource value: 0x7f08000e
+			public const int Title = 2131230734;
 			
-			// aapt resource value: 0x7f090001
-			public const int company_image = 2131296257;
+			// aapt resource value: 0x7f080014
+			public const int action_share = 2131230740;
 			
-			// aapt resource value: 0x7f090008
-			public const int content_frame = 2131296264;
+			// aapt resource value: 0x7f080001
+			public const int company_image = 2131230721;
 			
-			// aapt resource value: 0x7f09000f
-			public const int description = 2131296271;
+			// aapt resource value: 0x7f080008
+			public const int content_frame = 2131230728;
 			
-			// aapt resource value: 0x7f090007
-			public const int drawer_layout = 2131296263;
+			// aapt resource value: 0x7f080012
+			public const int description = 2131230738;
 			
-			// aapt resource value: 0x7f090009
-			public const int left_drawer = 2131296265;
+			// aapt resource value: 0x7f080007
+			public const int drawer_layout = 2131230727;
 			
-			// aapt resource value: 0x7f090005
-			public const int loadingImage = 2131296261;
+			// aapt resource value: 0x7f08000b
+			public const int left_drawer = 2131230731;
 			
-			// aapt resource value: 0x7f090003
-			public const int loadingProgressBar = 2131296259;
+			// aapt resource value: 0x7f080009
+			public const int load_status = 2131230729;
 			
-			// aapt resource value: 0x7f090006
-			public const int loadingProgressWheel = 2131296262;
+			// aapt resource value: 0x7f08000a
+			public const int load_status_message = 2131230730;
 			
-			// aapt resource value: 0x7f09000a
-			public const int menu_image = 2131296266;
+			// aapt resource value: 0x7f080005
+			public const int loadingImage = 2131230725;
 			
-			// aapt resource value: 0x7f090010
-			public const int search = 2131296272;
+			// aapt resource value: 0x7f080003
+			public const int loadingProgressBar = 2131230723;
 			
-			// aapt resource value: 0x7f090004
-			public const int textViewStatus = 2131296260;
+			// aapt resource value: 0x7f080006
+			public const int loadingProgressWheel = 2131230726;
 			
-			// aapt resource value: 0x7f09000b
-			public const int title = 2131296267;
+			// aapt resource value: 0x7f08000c
+			public const int menu_image = 2131230732;
+			
+			// aapt resource value: 0x7f080010
+			public const int pub_list = 2131230736;
+			
+			// aapt resource value: 0x7f080013
+			public const int search = 2131230739;
+			
+			// aapt resource value: 0x7f080004
+			public const int textViewStatus = 2131230724;
+			
+			// aapt resource value: 0x7f08000d
+			public const int title = 2131230733;
 			
 			static Id()
 			{
@@ -291,11 +290,11 @@ namespace JPA.Android
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f080000
-			public const int companies_menu = 2131230720;
+			// aapt resource value: 0x7f070000
+			public const int options_menu = 2131165184;
 			
-			// aapt resource value: 0x7f080001
-			public const int options_menu = 2131230721;
+			// aapt resource value: 0x7f070001
+			public const int publication_menu = 2131165185;
 			
 			static Menu()
 			{
@@ -331,6 +330,9 @@ namespace JPA.Android
 			// aapt resource value: 0x7f050000
 			public const int library_name = 2131034112;
 			
+			// aapt resource value: 0x7f05000c
+			public const int loading = 2131034124;
+			
 			// aapt resource value: 0x7f050007
 			public const int main_title = 2131034119;
 			
@@ -346,6 +348,9 @@ namespace JPA.Android
 			// aapt resource value: 0x7f050009
 			public const int search_title = 2131034121;
 			
+			// aapt resource value: 0x7f05000d
+			public const int share = 2131034125;
+			
 			static String()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -359,8 +364,8 @@ namespace JPA.Android
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f070000
-			public const int Theme_Splash = 2131165184;
+			// aapt resource value: 0x7f060000
+			public const int Theme_Splash = 2131099648;
 			
 			static Style()
 			{
