@@ -12,9 +12,7 @@ using Android.Widget;
 using MHMBase;
 
 namespace JPA.Android
-{
-//	[Activity (Label = "Companies", Theme = "@android:style/Theme.Holo.Light")]
-	//[MetaData ("android.support.PARENT_ACTIVITY", Value = "PublicationsActivity")]		
+{		
 	public class CompaniesFragment : Fragment
 	{
 		public override void OnCreate (Bundle savedInstanceState)
@@ -36,15 +34,12 @@ namespace JPA.Android
 				var publications = new PublicationsFragment (false, comp.Id);
 				MainActivity.mDrawerToggle.DrawerIndicatorEnabled = false;
 				FragmentManager.BeginTransaction ().Replace (Resource.Id.content_frame, publications).AddToBackStack (null).Commit ();
-//				new AlertDialog.Builder (this.Activity).SetTitle ("Full Info").SetMessage (comp.Name + " - " + comp.FullName).SetPositiveButton ("Ok", delegate {
-//				}).Show ();
 			};
 			return layout;
 		}
 
 		public override void OnCreateOptionsMenu (IMenu menu, MenuInflater inflater)
 		{
-			//inflater.Inflate (Resource.Menu.companies_menu, menu);
 			menu.RemoveItem (Resource.Id.search);
 			Console.Write ("Menu Creator called");
 		}

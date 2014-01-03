@@ -16,7 +16,7 @@ using System.Threading;
 namespace JPA.Android
 {
 	[Activity (Label = "Latest Jobs", Theme = "@android:style/Theme.Holo.Light", LaunchMode = LaunchMode.SingleTop)]
-	[IntentFilter (new [] {Intent.ActionSearch})]
+	[IntentFilter (new [] { Intent.ActionSearch })]
 	[MetaData (("android.app.searchable"), Resource = "@xml/searchable")]
 	public class MainActivity : Activity
 	{
@@ -36,16 +36,16 @@ namespace JPA.Android
 			mDrawerList.Adapter = new DrawerAdapter (this);
 			mDrawerList.ItemClick += (sender, e) => {
 				switch (e.Position) {
-				case 1:
-					var companies = new CompaniesFragment ();
-					FragmentManager.BeginTransaction ().Replace (Resource.Id.content_frame, companies).Commit ();
-					SetTitle (Resource.String.companies);
-					mDrawerLayout.CloseDrawer (mDrawerList);
-					break;
 				case 0:
 					var publications = new PublicationsFragment (false);
 					FragmentManager.BeginTransaction ().Replace (Resource.Id.content_frame, publications).Commit ();
 					SetTitle (Resource.String.main_title);
+					mDrawerLayout.CloseDrawer (mDrawerList);
+					break;
+				case 1:
+					var companies = new CompaniesFragment ();
+					FragmentManager.BeginTransaction ().Replace (Resource.Id.content_frame, companies).Commit ();
+					SetTitle (Resource.String.companies);
 					mDrawerLayout.CloseDrawer (mDrawerList);
 					break;
 				} 
@@ -61,7 +61,6 @@ namespace JPA.Android
 
 			mDrawerLayout.DrawerOpened += delegate {
 				ActionBar.SetTitle (Resource.String.menu);
-
 				InvalidateOptionsMenu ();
 			};
 			mDrawerLayout.DrawerClosed += delegate {
@@ -82,11 +81,9 @@ namespace JPA.Android
 		public override bool OnCreateOptionsMenu (IMenu menu)
 		{
 			MenuInflater.Inflate (Resource.Menu.options_menu, menu);
-
 			var searchManager =	(SearchManager) GetSystemService (Context.SearchService);
 			var searchView = (SearchView) menu.FindItem (Resource.Id.search).ActionView;
 			searchView.SetSearchableInfo (searchManager.GetSearchableInfo (ComponentName));
-
 			return true;
 		}
 
@@ -144,8 +141,6 @@ namespace JPA.Android
 					}), query);				
 				} else {
 					parser.LocalSearch (publications => RunOnUiThread (() => {
-						//publicationsList.Adapter.Dispose ();
-						//publicationsList.Adapter = new PublicationsListAdapter (this.LayoutInflater, publications);
 						var adapter = ((PublicationsListAdapter) publicationsList.Adapter);
 						adapter.Publications = publications;
 						adapter.NotifyDataSetChanged ();
@@ -155,7 +150,6 @@ namespace JPA.Android
 							myIntent.PutExtra ("pub_id", pub.Id);
 							StartActivity (myIntent);
 						};
-						Thread.Sleep (2000);
 						mFrameView.Visibility = ViewStates.Visible;
 						mLoadingView.Visibility = ViewStates.Gone;
 					}) , query);

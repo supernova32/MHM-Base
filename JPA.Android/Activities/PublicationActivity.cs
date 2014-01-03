@@ -39,15 +39,12 @@ namespace JPA.Android
 			image.SetImageBitmap (imgBitmap);
 			title.Text = pub.Title;
 			description.Text = pub.FullDescription;
-
-			// Create your application here
 		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			switch (item.ItemId) {
 			case global::Android.Resource.Id.Home:
-				//OnBackPressed ();
 				NavUtils.NavigateUpFromSameTask (this);
 				return true;
 			}
