@@ -25,7 +25,7 @@ namespace JPA.Android
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			var parser = new CompaniesParser ();
-			var companies = parser.GetCompanies (DatabaseHelper.Instance.Connection);
+			var companies = parser.Companies;
 			var layout = inflater.Inflate(Resource.Layout.CompaniesGrid, container, false);
 			var companiesGrid = layout.FindViewById<GridView> (Resource.Id.Companies);
 			companiesGrid.Adapter = new CompaniesAdapter (inflater, companies);

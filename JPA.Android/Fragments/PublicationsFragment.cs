@@ -58,7 +58,7 @@ namespace JPA.Android
 			dbHelper = DatabaseHelper.Instance;
 			_inflater = inflater;
 			var cnHelper = ConnectivityHelper.Instance (Activity);
-			layout = inflater.Inflate(Resource.Layout.PublicationsList, container, false);
+			layout = _inflater.Inflate(Resource.Layout.PublicationsList, container, false);
 			publicationsList = layout.FindViewById<ListView> (Resource.Id.Publications);
 			if (_reload) {
 

@@ -47,9 +47,10 @@ namespace MHMBase
 			return success;
 		}
 
-		public IList<Company> GetCompanies(SQLiteConnection db) {
-			var companies = db.Table<Company>().OrderBy(c => c.Name).ToList();
-			return companies;
+		public IList<Company> Companies {
+			get {
+				return DatabaseHelper.Instance.Connection.Table<Company>().OrderBy(c => c.Name).ToList();			
+			}
 		}
 	}
 }
