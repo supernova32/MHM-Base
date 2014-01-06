@@ -65,46 +65,134 @@ namespace JPA.Android
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_textSize = global::JPA.Android.Resource.Styleable.ProgressWheel_textSize;
 			global::PerpetualMobile.Storage.Resource.String.library_name = global::JPA.Android.Resource.String.library_name;
 			global::Base.Android.Resource.String.library_name = global::JPA.Android.Resource.String.library_name;
+			global::PullToRefresharp.Resource.Attribute.contentViewId = global::JPA.Android.Resource.Attribute.contentViewId;
+			global::PullToRefresharp.Resource.Attribute.fastScrollThumbWidth = global::JPA.Android.Resource.Attribute.fastScrollThumbWidth;
+			global::PullToRefresharp.Resource.Attribute.headerIconDrawable = global::JPA.Android.Resource.Attribute.headerIconDrawable;
+			global::PullToRefresharp.Resource.Attribute.headerId = global::JPA.Android.Resource.Attribute.headerId;
+			global::PullToRefresharp.Resource.Attribute.headerTextColor = global::JPA.Android.Resource.Attribute.headerTextColor;
+			global::PullToRefresharp.Resource.Attribute.ptrHeaderBackground = global::JPA.Android.Resource.Attribute.ptrHeaderBackground;
+			global::PullToRefresharp.Resource.Attribute.pullDownProgressIndicatorId = global::JPA.Android.Resource.Attribute.pullDownProgressIndicatorId;
+			global::PullToRefresharp.Resource.Attribute.pullDownTension = global::JPA.Android.Resource.Attribute.pullDownTension;
+			global::PullToRefresharp.Resource.Attribute.pullEnabled = global::JPA.Android.Resource.Attribute.pullEnabled;
+			global::PullToRefresharp.Resource.Attribute.pullToRefreshText = global::JPA.Android.Resource.Attribute.pullToRefreshText;
+			global::PullToRefresharp.Resource.Attribute.refreshingText = global::JPA.Android.Resource.Attribute.refreshingText;
+			global::PullToRefresharp.Resource.Attribute.releaseToRefreshText = global::JPA.Android.Resource.Attribute.releaseToRefreshText;
+			global::PullToRefresharp.Resource.Attribute.snapbackDuration = global::JPA.Android.Resource.Attribute.snapbackDuration;
+			global::PullToRefresharp.Resource.Color.ptrsharp_sb_gradient_end = global::JPA.Android.Resource.Color.ptrsharp_sb_gradient_end;
+			global::PullToRefresharp.Resource.Color.ptrsharp_sb_gradient_start = global::JPA.Android.Resource.Color.ptrsharp_sb_gradient_start;
+			global::PullToRefresharp.Resource.Color.ptrsharp_sb_header_text = global::JPA.Android.Resource.Color.ptrsharp_sb_header_text;
+			global::PullToRefresharp.Resource.Color.ptrsharp_sb_header_text_shadow = global::JPA.Android.Resource.Color.ptrsharp_sb_header_text_shadow;
+			global::PullToRefresharp.Resource.Dimension.fastscroll_thumb_width = global::JPA.Android.Resource.Dimension.fastscroll_thumb_width;
+			global::PullToRefresharp.Resource.Drawable.progress_medium_holo = global::JPA.Android.Resource.Drawable.progress_medium_holo;
+			global::PullToRefresharp.Resource.Drawable.ptrsharp_serious_business_gradient = global::JPA.Android.Resource.Drawable.ptrsharp_serious_business_gradient;
+			global::PullToRefresharp.Resource.Drawable.serious_business_arrow = global::JPA.Android.Resource.Drawable.serious_business_arrow;
+			global::PullToRefresharp.Resource.Drawable.serious_business_arrow2 = global::JPA.Android.Resource.Drawable.serious_business_arrow2;
+			global::PullToRefresharp.Resource.Drawable.spinner_20_inner_holo = global::JPA.Android.Resource.Drawable.spinner_20_inner_holo;
+			global::PullToRefresharp.Resource.Drawable.spinner_20_outer_holo = global::JPA.Android.Resource.Drawable.spinner_20_outer_holo;
+			global::PullToRefresharp.Resource.Id.header = global::JPA.Android.Resource.Id.header;
+			global::PullToRefresharp.Resource.Id.header_container = global::JPA.Android.Resource.Id.header_container;
+			global::PullToRefresharp.Resource.Id.icon = global::JPA.Android.Resource.Id.icon;
+			global::PullToRefresharp.Resource.Id.pullDownProgressIndicator = global::JPA.Android.Resource.Id.pullDownProgressIndicator;
+			global::PullToRefresharp.Resource.Id.text = global::JPA.Android.Resource.Id.text;
+			global::PullToRefresharp.Resource.Layout.ptrsharp_header = global::JPA.Android.Resource.Layout.ptrsharp_header;
+			global::PullToRefresharp.Resource.String.library_name = global::JPA.Android.Resource.String.library_name;
+			global::PullToRefresharp.Resource.String.ptrsharp_pull_to_refresh = global::JPA.Android.Resource.String.ptrsharp_pull_to_refresh;
+			global::PullToRefresharp.Resource.String.ptrsharp_refreshing = global::JPA.Android.Resource.String.ptrsharp_refreshing;
+			global::PullToRefresharp.Resource.String.ptrsharp_release_to_refresh = global::JPA.Android.Resource.String.ptrsharp_release_to_refresh;
+			global::PullToRefresharp.Resource.Style.HoloProgressMedium = global::JPA.Android.Resource.Style.HoloProgressMedium;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_contentViewId = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_contentViewId;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_fastScrollThumbWidth = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_fastScrollThumbWidth;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_headerIconDrawable = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_headerIconDrawable;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_headerId = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_headerId;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_headerTextColor = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_headerTextColor;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_ptrHeaderBackground = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_ptrHeaderBackground;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_pullDownProgressIndicatorId = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_pullDownProgressIndicatorId;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_pullDownTension = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_pullDownTension;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_pullEnabled = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_pullEnabled;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_pullToRefreshText = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_pullToRefreshText;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_refreshingText = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_refreshingText;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_releaseToRefreshText = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_releaseToRefreshText;
+			global::PullToRefresharp.Resource.Styleable.PullToRefresharpWrapper_snapbackDuration = global::JPA.Android.Resource.Styleable.PullToRefresharpWrapper_snapbackDuration;
 		}
 		
 		public partial class Attribute
 		{
 			
-			// aapt resource value: 0x7f010003
-			public const int barColor = 2130771971;
+			// aapt resource value: 0x7f010010
+			public const int barColor = 2130771984;
 			
-			// aapt resource value: 0x7f01000b
-			public const int barLength = 2130771979;
+			// aapt resource value: 0x7f010018
+			public const int barLength = 2130771992;
 			
-			// aapt resource value: 0x7f01000a
-			public const int barWidth = 2130771978;
+			// aapt resource value: 0x7f010017
+			public const int barWidth = 2130771991;
 			
-			// aapt resource value: 0x7f010008
-			public const int circleColor = 2130771976;
-			
-			// aapt resource value: 0x7f010007
-			public const int delayMillis = 2130771975;
-			
-			// aapt resource value: 0x7f010009
-			public const int radius = 2130771977;
-			
-			// aapt resource value: 0x7f010004
-			public const int rimColor = 2130771972;
-			
-			// aapt resource value: 0x7f010005
-			public const int rimWidth = 2130771973;
-			
-			// aapt resource value: 0x7f010006
-			public const int spinSpeed = 2130771974;
-			
-			// aapt resource value: 0x7f010000
-			public const int text = 2130771968;
+			// aapt resource value: 0x7f010015
+			public const int circleColor = 2130771989;
 			
 			// aapt resource value: 0x7f010001
-			public const int textColor = 2130771969;
+			public const int contentViewId = 2130771969;
+			
+			// aapt resource value: 0x7f010014
+			public const int delayMillis = 2130771988;
+			
+			// aapt resource value: 0x7f01000c
+			public const int fastScrollThumbWidth = 2130771980;
+			
+			// aapt resource value: 0x7f01000a
+			public const int headerIconDrawable = 2130771978;
+			
+			// aapt resource value: 0x7f010000
+			public const int headerId = 2130771968;
+			
+			// aapt resource value: 0x7f010009
+			public const int headerTextColor = 2130771977;
+			
+			// aapt resource value: 0x7f010008
+			public const int ptrHeaderBackground = 2130771976;
 			
 			// aapt resource value: 0x7f010002
-			public const int textSize = 2130771970;
+			public const int pullDownProgressIndicatorId = 2130771970;
+			
+			// aapt resource value: 0x7f010004
+			public const int pullDownTension = 2130771972;
+			
+			// aapt resource value: 0x7f01000b
+			public const int pullEnabled = 2130771979;
+			
+			// aapt resource value: 0x7f010005
+			public const int pullToRefreshText = 2130771973;
+			
+			// aapt resource value: 0x7f010016
+			public const int radius = 2130771990;
+			
+			// aapt resource value: 0x7f010007
+			public const int refreshingText = 2130771975;
+			
+			// aapt resource value: 0x7f010006
+			public const int releaseToRefreshText = 2130771974;
+			
+			// aapt resource value: 0x7f010011
+			public const int rimColor = 2130771985;
+			
+			// aapt resource value: 0x7f010012
+			public const int rimWidth = 2130771986;
+			
+			// aapt resource value: 0x7f010003
+			public const int snapbackDuration = 2130771971;
+			
+			// aapt resource value: 0x7f010013
+			public const int spinSpeed = 2130771987;
+			
+			// aapt resource value: 0x7f01000d
+			public const int text = 2130771981;
+			
+			// aapt resource value: 0x7f01000e
+			public const int textColor = 2130771982;
+			
+			// aapt resource value: 0x7f01000f
+			public const int textSize = 2130771983;
 			
 			static Attribute()
 			{
@@ -112,6 +200,47 @@ namespace JPA.Android
 			}
 			
 			private Attribute()
+			{
+			}
+		}
+		
+		public partial class Color
+		{
+			
+			// aapt resource value: 0x7f050001
+			public const int ptrsharp_sb_gradient_end = 2131034113;
+			
+			// aapt resource value: 0x7f050000
+			public const int ptrsharp_sb_gradient_start = 2131034112;
+			
+			// aapt resource value: 0x7f050002
+			public const int ptrsharp_sb_header_text = 2131034114;
+			
+			// aapt resource value: 0x7f050003
+			public const int ptrsharp_sb_header_text_shadow = 2131034115;
+			
+			static Color()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Color()
+			{
+			}
+		}
+		
+		public partial class Dimension
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int fastscroll_thumb_width = 2131099648;
+			
+			static Dimension()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Dimension()
 			{
 			}
 		}
@@ -147,13 +276,31 @@ namespace JPA.Android
 			public const int Icon = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int roundedbg = 2130837513;
+			public const int progress_medium_holo = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int roundedbgdark = 2130837514;
+			public const int ptrsharp_serious_business_gradient = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int splash = 2130837515;
+			public const int roundedbg = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int roundedbgdark = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int serious_business_arrow = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int serious_business_arrow2 = 2130837518;
+			
+			// aapt resource value: 0x7f02000f
+			public const int spinner_20_inner_holo = 2130837519;
+			
+			// aapt resource value: 0x7f020010
+			public const int spinner_20_outer_holo = 2130837520;
+			
+			// aapt resource value: 0x7f020011
+			public const int splash = 2130837521;
 			
 			static Drawable()
 			{
@@ -168,68 +315,83 @@ namespace JPA.Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f080000
-			public const int Companies = 2131230720;
+			// aapt resource value: 0x7f0a0000
+			public const int Companies = 2131361792;
 			
-			// aapt resource value: 0x7f08000f
-			public const int Description = 2131230735;
+			// aapt resource value: 0x7f0a0014
+			public const int Description = 2131361812;
 			
-			// aapt resource value: 0x7f080002
-			public const int Name = 2131230722;
+			// aapt resource value: 0x7f0a0002
+			public const int Name = 2131361794;
 			
-			// aapt resource value: 0x7f080011
-			public const int Publications = 2131230737;
+			// aapt resource value: 0x7f0a0016
+			public const int Publications = 2131361814;
 			
-			// aapt resource value: 0x7f08000e
-			public const int Title = 2131230734;
+			// aapt resource value: 0x7f0a0013
+			public const int Title = 2131361811;
 			
-			// aapt resource value: 0x7f080014
-			public const int action_share = 2131230740;
+			// aapt resource value: 0x7f0a0019
+			public const int action_share = 2131361817;
 			
-			// aapt resource value: 0x7f080001
-			public const int company_image = 2131230721;
+			// aapt resource value: 0x7f0a0001
+			public const int company_image = 2131361793;
 			
-			// aapt resource value: 0x7f080008
-			public const int content_frame = 2131230728;
+			// aapt resource value: 0x7f0a0008
+			public const int content_frame = 2131361800;
 			
-			// aapt resource value: 0x7f080012
-			public const int description = 2131230738;
+			// aapt resource value: 0x7f0a0017
+			public const int description = 2131361815;
 			
-			// aapt resource value: 0x7f080007
-			public const int drawer_layout = 2131230727;
+			// aapt resource value: 0x7f0a0007
+			public const int drawer_layout = 2131361799;
 			
-			// aapt resource value: 0x7f08000b
-			public const int left_drawer = 2131230731;
+			// aapt resource value: 0x7f0a000f
+			public const int header = 2131361807;
 			
-			// aapt resource value: 0x7f080009
-			public const int load_status = 2131230729;
+			// aapt resource value: 0x7f0a000e
+			public const int header_container = 2131361806;
 			
-			// aapt resource value: 0x7f08000a
-			public const int load_status_message = 2131230730;
+			// aapt resource value: 0x7f0a0011
+			public const int icon = 2131361809;
 			
-			// aapt resource value: 0x7f080005
-			public const int loadingImage = 2131230725;
+			// aapt resource value: 0x7f0a000b
+			public const int left_drawer = 2131361803;
 			
-			// aapt resource value: 0x7f080003
-			public const int loadingProgressBar = 2131230723;
+			// aapt resource value: 0x7f0a0009
+			public const int load_status = 2131361801;
 			
-			// aapt resource value: 0x7f080006
-			public const int loadingProgressWheel = 2131230726;
+			// aapt resource value: 0x7f0a000a
+			public const int load_status_message = 2131361802;
 			
-			// aapt resource value: 0x7f08000c
-			public const int menu_image = 2131230732;
+			// aapt resource value: 0x7f0a0005
+			public const int loadingImage = 2131361797;
 			
-			// aapt resource value: 0x7f080010
-			public const int pub_list = 2131230736;
+			// aapt resource value: 0x7f0a0003
+			public const int loadingProgressBar = 2131361795;
 			
-			// aapt resource value: 0x7f080013
-			public const int search = 2131230739;
+			// aapt resource value: 0x7f0a0006
+			public const int loadingProgressWheel = 2131361798;
 			
-			// aapt resource value: 0x7f080004
-			public const int textViewStatus = 2131230724;
+			// aapt resource value: 0x7f0a000c
+			public const int menu_image = 2131361804;
 			
-			// aapt resource value: 0x7f08000d
-			public const int title = 2131230733;
+			// aapt resource value: 0x7f0a0015
+			public const int pub_list = 2131361813;
+			
+			// aapt resource value: 0x7f0a0010
+			public const int pullDownProgressIndicator = 2131361808;
+			
+			// aapt resource value: 0x7f0a0018
+			public const int search = 2131361816;
+			
+			// aapt resource value: 0x7f0a0012
+			public const int text = 2131361810;
+			
+			// aapt resource value: 0x7f0a0004
+			public const int textViewStatus = 2131361796;
+			
+			// aapt resource value: 0x7f0a000d
+			public const int title = 2131361805;
 			
 			static Id()
 			{
@@ -269,13 +431,19 @@ namespace JPA.Android
 			public const int NavigationItemOld = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int Publication = 2130903048;
+			public const int ptrsharp_header = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int PublicationsList = 2130903049;
+			public const int Publication = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int PublicationView = 2130903050;
+			public const int PublicationsList = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int PublicationView = 2130903051;
+			
+			// aapt resource value: 0x7f03000c
+			public const int RefreshPubList = 2130903052;
 			
 			static Layout()
 			{
@@ -290,11 +458,11 @@ namespace JPA.Android
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f070000
-			public const int options_menu = 2131165184;
+			// aapt resource value: 0x7f090000
+			public const int options_menu = 2131296256;
 			
-			// aapt resource value: 0x7f070001
-			public const int publication_menu = 2131165185;
+			// aapt resource value: 0x7f090001
+			public const int publication_menu = 2131296257;
 			
 			static Menu()
 			{
@@ -309,47 +477,56 @@ namespace JPA.Android
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f050002
-			public const int app_name = 2131034114;
+			// aapt resource value: 0x7f070005
+			public const int app_name = 2131165189;
 			
-			// aapt resource value: 0x7f050008
-			public const int by_company = 2131034120;
+			// aapt resource value: 0x7f07000b
+			public const int by_company = 2131165195;
 			
-			// aapt resource value: 0x7f050006
-			public const int companies = 2131034118;
+			// aapt resource value: 0x7f070009
+			public const int companies = 2131165193;
 			
-			// aapt resource value: 0x7f050004
-			public const int drawer_close = 2131034116;
+			// aapt resource value: 0x7f070007
+			public const int drawer_close = 2131165191;
 			
-			// aapt resource value: 0x7f050003
-			public const int drawer_open = 2131034115;
+			// aapt resource value: 0x7f070006
+			public const int drawer_open = 2131165190;
 			
-			// aapt resource value: 0x7f050001
-			public const int hello = 2131034113;
+			// aapt resource value: 0x7f070004
+			public const int hello = 2131165188;
 			
-			// aapt resource value: 0x7f050000
-			public const int library_name = 2131034112;
+			// aapt resource value: 0x7f070000
+			public const int library_name = 2131165184;
 			
-			// aapt resource value: 0x7f05000c
-			public const int loading = 2131034124;
+			// aapt resource value: 0x7f07000f
+			public const int loading = 2131165199;
 			
-			// aapt resource value: 0x7f050007
-			public const int main_title = 2131034119;
+			// aapt resource value: 0x7f07000a
+			public const int main_title = 2131165194;
 			
-			// aapt resource value: 0x7f050005
-			public const int menu = 2131034117;
+			// aapt resource value: 0x7f070008
+			public const int menu = 2131165192;
 			
-			// aapt resource value: 0x7f05000a
-			public const int search_hint = 2131034122;
+			// aapt resource value: 0x7f070001
+			public const int ptrsharp_pull_to_refresh = 2131165185;
 			
-			// aapt resource value: 0x7f05000b
-			public const int search_results = 2131034123;
+			// aapt resource value: 0x7f070003
+			public const int ptrsharp_refreshing = 2131165187;
 			
-			// aapt resource value: 0x7f050009
-			public const int search_title = 2131034121;
+			// aapt resource value: 0x7f070002
+			public const int ptrsharp_release_to_refresh = 2131165186;
 			
-			// aapt resource value: 0x7f05000d
-			public const int share = 2131034125;
+			// aapt resource value: 0x7f07000d
+			public const int search_hint = 2131165197;
+			
+			// aapt resource value: 0x7f07000e
+			public const int search_results = 2131165198;
+			
+			// aapt resource value: 0x7f07000c
+			public const int search_title = 2131165196;
+			
+			// aapt resource value: 0x7f070010
+			public const int share = 2131165200;
 			
 			static String()
 			{
@@ -364,8 +541,11 @@ namespace JPA.Android
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f060000
-			public const int Theme_Splash = 2131099648;
+			// aapt resource value: 0x7f080000
+			public const int HoloProgressMedium = 2131230720;
+			
+			// aapt resource value: 0x7f080001
+			public const int Theme_Splash = 2131230721;
 			
 			static Style()
 			{
@@ -398,18 +578,18 @@ namespace JPA.Android
 			
 			public static int[] ProgressWheel = new int[]
 			{
-					2130771968,
-					2130771969,
-					2130771970,
-					2130771971,
-					2130771972,
-					2130771973,
-					2130771974,
-					2130771975,
-					2130771976,
-					2130771977,
-					2130771978,
-					2130771979};
+					2130771981,
+					2130771982,
+					2130771983,
+					2130771984,
+					2130771985,
+					2130771986,
+					2130771987,
+					2130771988,
+					2130771989,
+					2130771990,
+					2130771991,
+					2130771992};
 			
 			// aapt resource value: 3
 			public const int ProgressWheel_barColor = 3;
@@ -446,6 +626,61 @@ namespace JPA.Android
 			
 			// aapt resource value: 2
 			public const int ProgressWheel_textSize = 2;
+			
+			public static int[] PullToRefresharpWrapper = new int[]
+			{
+					2130771968,
+					2130771969,
+					2130771970,
+					2130771971,
+					2130771972,
+					2130771973,
+					2130771974,
+					2130771975,
+					2130771976,
+					2130771977,
+					2130771978,
+					2130771979,
+					2130771980};
+			
+			// aapt resource value: 1
+			public const int PullToRefresharpWrapper_contentViewId = 1;
+			
+			// aapt resource value: 12
+			public const int PullToRefresharpWrapper_fastScrollThumbWidth = 12;
+			
+			// aapt resource value: 10
+			public const int PullToRefresharpWrapper_headerIconDrawable = 10;
+			
+			// aapt resource value: 0
+			public const int PullToRefresharpWrapper_headerId = 0;
+			
+			// aapt resource value: 9
+			public const int PullToRefresharpWrapper_headerTextColor = 9;
+			
+			// aapt resource value: 8
+			public const int PullToRefresharpWrapper_ptrHeaderBackground = 8;
+			
+			// aapt resource value: 2
+			public const int PullToRefresharpWrapper_pullDownProgressIndicatorId = 2;
+			
+			// aapt resource value: 4
+			public const int PullToRefresharpWrapper_pullDownTension = 4;
+			
+			// aapt resource value: 11
+			public const int PullToRefresharpWrapper_pullEnabled = 11;
+			
+			// aapt resource value: 5
+			public const int PullToRefresharpWrapper_pullToRefreshText = 5;
+			
+			// aapt resource value: 7
+			public const int PullToRefresharpWrapper_refreshingText = 7;
+			
+			// aapt resource value: 6
+			public const int PullToRefresharpWrapper_releaseToRefreshText = 6;
+			
+			// aapt resource value: 3
+			public const int PullToRefresharpWrapper_snapbackDuration = 3;
 			
 			static Styleable()
 			{

@@ -21,6 +21,7 @@ namespace JPA.Android
 		View layout;
 		PublicationsParser parser;
 		DatabaseHelper dbHelper;
+		ConnectivityHelper cnHelper;
 		LayoutInflater _inflater;
 		ListView publicationsList;
 
@@ -57,27 +58,17 @@ namespace JPA.Android
 			parser = new PublicationsParser ();
 			dbHelper = DatabaseHelper.Instance;
 			_inflater = inflater;
-			var cnHelper = ConnectivityHelper.Instance (Activity);
-			layout = _inflater.Inflate(Resource.Layout.PublicationsList, container, false);
+			cnHelper = ConnectivityHelper.Instance (Activity);
+			if (_companyId == 0) {
+				layout = _inflater.Inflate (Resource.Layout.RefreshPubList, container, false);
+				var list = layout.FindViewById<PullToRefresharp.Android.Widget.ListView> (Resource.Id.Publications);
+				list.RefreshActivated += (sender, e) => RefreshTable (list);
+			} else {
+				layout = _inflater.Inflate (Resource.Layout.PublicationsList, container, false);
+			}
 			publicationsList = layout.FindViewById<ListView> (Resource.Id.Publications);
 			if (_reload) {
-
-				if (cnHelper.NetworkAvailable ()) {
-					AndHUD.Shared.Show(Activity, "Downloading Jobs", -1, MaskType.Clear);
-					parser.UpdatePublications (publications => Activity.RunOnUiThread (() => {
-						publicationsList.Adapter = new PublicationsListAdapter (_inflater, publications);
-						publicationsList.ItemClick += (sender, e) => {
-							var pub = publications [e.Position];
-							var intent = new Intent(Activity, typeof(PublicationActivity));
-							intent.PutExtra("pub_id", pub.Id);
-							StartActivity(intent);
-						};
-						AndHUD.Shared.Dismiss (Activity);
-					}));
-				} else {
-					SetupTable (_companyId);
-				}
-			
+				RefreshTable ();	
 			} else {
 				SetupTable (_companyId);	
 			}
@@ -103,6 +94,26 @@ namespace JPA.Android
 				intent.PutExtra ("pub_id", pub.Id);
 				StartActivity (intent);
 			};
+		}
+
+		public void RefreshTable (PullToRefresharp.Android.Widget.ListView list = null) {
+			if (cnHelper.NetworkAvailable ()) {
+				AndHUD.Shared.Show(Activity, "Downloading Jobs", -1, MaskType.Clear);
+				parser.UpdatePublications (publications => Activity.RunOnUiThread (() => {
+					publicationsList.Adapter = new PublicationsListAdapter (_inflater, publications);
+					publicationsList.ItemClick += (sender, e) => {
+						var pub = publications [e.Position];
+						var intent = new Intent(Activity, typeof(PublicationActivity));
+						intent.PutExtra("pub_id", pub.Id);
+						StartActivity(intent);
+					};
+					AndHUD.Shared.Dismiss (Activity);
+				}));
+			} else {
+				SetupTable (_companyId);
+			}
+			if (list != null)
+				list.OnRefreshCompleted ();		
 		}
 	}
 }

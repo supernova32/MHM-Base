@@ -115,6 +115,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_share.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_share.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_share.png" />
+    <AndroidResource Include="Resources\layout\RefreshPubList.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -127,6 +128,7 @@
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv4-18">
+      <InstallationInProgress>True</InstallationInProgress>
       <Version>4.18.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
@@ -135,6 +137,10 @@
     <ProjectReference Include="..\Base.Android\Base.Android.csproj">
       <Project>{8AB2BD12-44E2-4689-B3A4-CD4245941781}</Project>
       <Name>Base.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PullToRefresharp\PullToRefresharp.Android\PullToRefresharp.Android.csproj">
+      <Project>{27583AAA-AAE8-4E01-A962-6DCE5E0E3A4B}</Project>
+      <Name>PullToRefresharp.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@ namespace MHMBase
 {
 	public class PublicationsParser
 	{
-		const string _baseUrl = "http://192.168.2.1:3000/publications.xml";
+		const string _baseUrl = "https://insomniware.com/publications.xml";
 		readonly SQLiteConnection db = DatabaseHelper.Instance.Connection;
 
 		public void UpdatePublications(Action<IList<Publication>> callback) {
