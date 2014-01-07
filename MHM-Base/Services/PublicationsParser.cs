@@ -87,7 +87,7 @@ namespace MHMBase
 
 		public IList<Publication> Publications {
 			get {
-				return db.Table<Publication>().ToList();			
+				return db.Table<Publication>().OrderByDescending(p => p.Id).ToList();			
 			}
 		}
 	}

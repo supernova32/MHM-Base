@@ -63,10 +63,11 @@ namespace JPA.Android
 				layout = _inflater.Inflate (Resource.Layout.RefreshPubList, container, false);
 				var list = layout.FindViewById<PullToRefresharp.Android.Widget.ListView> (Resource.Id.Publications);
 				list.RefreshActivated += (sender, e) => RefreshTable (list);
+				publicationsList = list;
 			} else {
 				layout = _inflater.Inflate (Resource.Layout.PublicationsList, container, false);
+				publicationsList = layout.FindViewById<ListView> (Resource.Id.Publications);
 			}
-			publicationsList = layout.FindViewById<ListView> (Resource.Id.Publications);
 			if (_reload) {
 				RefreshTable ();	
 			} else {
@@ -96,13 +97,14 @@ namespace JPA.Android
 			};
 		}
 
-		public void RefreshTable (PullToRefresharp.Android.Widget.ListView list = null) {
+		public void RefreshTable (PullToRefresharp.Android.Views.IPullToRefresharpView list = null) {
 			if (cnHelper.NetworkAvailable ()) {
 				AndHUD.Shared.Show(Activity, "Downloading Jobs", -1, MaskType.Clear);
 				parser.UpdatePublications (publications => Activity.RunOnUiThread (() => {
-					publicationsList.Adapter = new PublicationsListAdapter (_inflater, publications);
+					var adapter = new PublicationsListAdapter (_inflater, publications);
+					publicationsList.Adapter = adapter;
 					publicationsList.ItemClick += (sender, e) => {
-						var pub = publications [e.Position];
+						var pub = adapter.Publications [e.Position];
 						var intent = new Intent(Activity, typeof(PublicationActivity));
 						intent.PutExtra("pub_id", pub.Id);
 						StartActivity(intent);

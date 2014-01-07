@@ -330,8 +330,8 @@ namespace JPA.Android
 			// aapt resource value: 0x7f0a0013
 			public const int Title = 2131361811;
 			
-			// aapt resource value: 0x7f0a0019
-			public const int action_share = 2131361817;
+			// aapt resource value: 0x7f0a001a
+			public const int action_share = 2131361818;
 			
 			// aapt resource value: 0x7f0a0001
 			public const int company_image = 2131361793;
@@ -381,8 +381,8 @@ namespace JPA.Android
 			// aapt resource value: 0x7f0a0010
 			public const int pullDownProgressIndicator = 2131361808;
 			
-			// aapt resource value: 0x7f0a0018
-			public const int search = 2131361816;
+			// aapt resource value: 0x7f0a0019
+			public const int search = 2131361817;
 			
 			// aapt resource value: 0x7f0a0012
 			public const int text = 2131361810;
@@ -392,6 +392,9 @@ namespace JPA.Android
 			
 			// aapt resource value: 0x7f0a000d
 			public const int title = 2131361805;
+			
+			// aapt resource value: 0x7f0a0018
+			public const int wrapper = 2131361816;
 			
 			static Id()
 			{
