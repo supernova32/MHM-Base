@@ -1,10 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--<?xml version="1.0" encoding="utf-8"?>
 <pulltorefresharp.android.views.ViewWrapper xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pullToRefresharpWrapper="http://schemas.android.com/apk/res-auto"
     android:id="@+id/wrapper"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    pullToRefresharpWrapper:pullDownTension="0.5"
+    pullToRefresharpWrapper:snapbackDuration="300">
     <pulltorefresharp.android.widget.ListView
         android:id="@+id/Publications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-</pulltorefresharp.android.views.ViewWrapper>
+</pulltorefresharp.android.views.ViewWrapper>-->

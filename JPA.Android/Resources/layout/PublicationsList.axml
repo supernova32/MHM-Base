@@ -4,6 +4,19 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+    <LinearLayout
+        android:id="@+id/load_status"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/loading_bar"
+            android:layout_centerInParent="true" />
+    </LinearLayout>
     <ListView
         android:id="@+id/Publications"
         android:layout_width="match_parent"

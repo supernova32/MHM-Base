@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector">
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="57.2dp"
@@ -10,7 +11,7 @@
         android:id="@+id/company_image" />
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="fill_parent">
         <TextView
             android:id="@+id/Title"
@@ -28,4 +29,10 @@
             android:padding="5dip"
             android:text="Test" />
     </LinearLayout>
+<!--    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/arrow_image"
+        android:layout_gravity="right" />-->
 </LinearLayout>
