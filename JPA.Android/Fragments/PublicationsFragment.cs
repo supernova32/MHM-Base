@@ -9,7 +9,6 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using AndroidHUD;
 using MHMBase;
 
 namespace JPA.Android
@@ -24,10 +23,16 @@ namespace JPA.Android
 		ConnectivityHelper cnHelper;
 		LayoutInflater _inflater;
 		ListView publicationsList;
+		LinearLayout LoadingView;
 
 		public PublicationsFragment (bool remoteLoad = true, int companyId = 0) {
 			_reload = remoteLoad;
 			_companyId = companyId;		
+		}
+
+		public PublicationsFragment () {
+			_reload = true;
+			_companyId = 0;
 		}
 
 		public override void OnCreate (Bundle savedInstanceState)
@@ -42,12 +47,21 @@ namespace JPA.Android
 			}
 		}
 
+		public override void OnCreateOptionsMenu (IMenu menu, MenuInflater inflater)
+		{
+			if (_companyId != 0)
+				menu.RemoveItem (Resource.Id.action_refresh);
+		}
+
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			switch (item.ItemId) {
 			case global::Android.Resource.Id.Home:
 				Activity.SetTitle (Resource.String.companies);
 				Activity.OnBackPressed ();
+				return true;
+			case Resource.Id.action_refresh:
+				RefreshTable ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -59,15 +73,16 @@ namespace JPA.Android
 			dbHelper = DatabaseHelper.Instance;
 			_inflater = inflater;
 			cnHelper = ConnectivityHelper.Instance (Activity);
-			if (_companyId == 0) {
-				layout = _inflater.Inflate (Resource.Layout.RefreshPubList, container, false);
-				var list = layout.FindViewById<PullToRefresharp.Android.Widget.ListView> (Resource.Id.Publications);
-				list.RefreshActivated += (sender, e) => RefreshTable (list);
-				publicationsList = list;
-			} else {
+//			if (_companyId == 0) {
+//				layout = _inflater.Inflate (Resource.Layout.RefreshPubList, container, false);
+//				var list = layout.FindViewById<PullToRefresharp.Android.Widget.ListView> (Resource.Id.Publications);
+//				list.RefreshActivated += (sender, e) => RefreshTable (list);
+//				publicationsList = list;
+//			} else {
 				layout = _inflater.Inflate (Resource.Layout.PublicationsList, container, false);
 				publicationsList = layout.FindViewById<ListView> (Resource.Id.Publications);
-			}
+				LoadingView = layout.FindViewById<LinearLayout> (Resource.Id.load_status);
+//			}
 			if (_reload) {
 				RefreshTable ();	
 			} else {
@@ -97,25 +112,28 @@ namespace JPA.Android
 			};
 		}
 
-		public void RefreshTable (PullToRefresharp.Android.Views.IPullToRefresharpView list = null) {
+		public void RefreshTable () { //PullToRefresharp.Android.Views.IPullToRefresharpView list = null
+			var activity = Activity;
+			publicationsList.Visibility = ViewStates.Gone;
+			LoadingView.Visibility = ViewStates.Visible;
 			if (cnHelper.NetworkAvailable ()) {
-				AndHUD.Shared.Show(Activity, "Downloading Jobs", -1, MaskType.Clear);
-				parser.UpdatePublications (publications => Activity.RunOnUiThread (() => {
+				parser.UpdatePublications (publications => activity.RunOnUiThread (() => {
 					var adapter = new PublicationsListAdapter (_inflater, publications);
 					publicationsList.Adapter = adapter;
 					publicationsList.ItemClick += (sender, e) => {
 						var pub = adapter.Publications [e.Position];
-						var intent = new Intent(Activity, typeof(PublicationActivity));
-						intent.PutExtra("pub_id", pub.Id);
-						StartActivity(intent);
+						var intent = new Intent (activity, typeof(PublicationActivity));
+						intent.PutExtra ("pub_id", pub.Id);
+						StartActivity (intent);
 					};
-					AndHUD.Shared.Dismiss (Activity);
-				}));
+					LoadingView.Visibility = ViewStates.Gone;
+					publicationsList.Visibility = ViewStates.Visible;
+				}), error => activity.RunOnUiThread (() => Toast.MakeText (activity, Resource.String.connection_error, ToastLength.Long).Show ()));
 			} else {
 				SetupTable (_companyId);
 			}
-			if (list != null)
-				list.OnRefreshCompleted ();		
+//			if (list != null)
+//				list.OnRefreshCompleted ();		
 		}
 	}
 }
