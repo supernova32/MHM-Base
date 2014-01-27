@@ -44,14 +44,17 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="AndHUD">
-      <HintPath>..\Components\AndHUD-1.2\lib\android\AndHUD.dll</HintPath>
-    </Reference>
     <Reference Include="SimpleStorage.Droid">
       <HintPath>..\Components\simple-storage-1.2\lib\android\SimpleStorage.Droid.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\Components\xamandroidsupportv4-18-4.18.1\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\Components\xamandroidsupportv7appcompat-7.18.0\lib\android\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="GooglePlayServicesLib">
+      <HintPath>..\Components\googleplayservices-13.0\lib\android\GooglePlayServicesLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -66,13 +69,17 @@
     <Compile Include="Fragments\PublicationsFragment.cs" />
     <Compile Include="Adapters\DrawerAdapter.cs" />
     <Compile Include="Activities\PublicationActivity.cs" />
-    <Compile Include="Activities\SearchActivity.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
+    <Compile Include="Providers\SuggestionProvider.cs" />
+    <Compile Include="Services\GCMIntentService.cs" />
+    <Compile Include="Receivers\GCMBroadcastReceiver.cs" />
+    <Compile Include="Activities\WebActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Resources\layout\RefreshPubList.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -82,15 +89,12 @@
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\drawable\splash.png" />
     <AndroidResource Include="Resources\layout\Navigation.axml" />
-    <AndroidResource Include="Resources\drawable-hdpi\action_search.png" />
     <AndroidResource Include="Resources\drawable-hdpi\drawer_shadow.9.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_drawer.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\action_search.png" />
     <AndroidResource Include="Resources\drawable-mdpi\drawer_shadow.9.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_drawer.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\action_search.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\drawer_shadow.9.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_drawer.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
@@ -108,26 +112,171 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_search.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_search.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_search.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_search.png" />
     <AndroidResource Include="Resources\menu\publication_menu.xml" />
+    <AndroidResource Include="Resources\values\Colors.xml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\drawer_shadow.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_search.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_drawer.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_collection.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_collection.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_collection.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_collection.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_view_as_grid.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_view_as_grid.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_view_as_grid.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_view_as_grid.png" />
+    <AndroidResource Include="Resources\layout\SplashView.axml" />
+    <AndroidResource Include="Resources\drawable\ic_app_icon.png" />
+    <AndroidResource Include="Resources\drawable\action_mhm.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_share.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_share.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_share.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_share.png" />
-    <AndroidResource Include="Resources\layout\RefreshPubList.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_overflow.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_overflow.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_overflow.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_overflow.png" />
+    <AndroidResource Include="Resources\drawable\action_mhm_old.png" />
+    <AndroidResource Include="Resources\drawable\ic_app_icon_old.png" />
+    <AndroidResource Include="Resources\drawable\ic_companies.png" />
+    <AndroidResource Include="Resources\drawable\ic_home.png" />
+    <AndroidResource Include="Resources\drawable\ic_splash.png" />
+    <AndroidResource Include="Resources\drawable\ic_arrow.png" />
+    <AndroidResource Include="Resources\drawable\activated_background.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_navigation_drawer.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_navigation_drawer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_navigation_drawer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_navigation_drawer.png" />
+    <AndroidResource Include="Resources\drawable\ab_background_textured_customactionbartheme.xml" />
+    <AndroidResource Include="Resources\drawable\btn_cab_done_customactionbartheme.xml" />
+    <AndroidResource Include="Resources\drawable\progress_horizontal_customactionbartheme.xml" />
+    <AndroidResource Include="Resources\drawable\selectable_background_customactionbartheme.xml" />
+    <AndroidResource Include="Resources\drawable\spinner_background_ab_customactionbartheme.xml" />
+    <AndroidResource Include="Resources\drawable\tab_indicator_ab_customactionbartheme.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ab_bottom_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ab_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ab_stacked_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ab_texture_tile_customactionbartheme.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ab_transparent_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_cab_done_default_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_cab_done_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_cab_done_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\cab_background_bottom_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\cab_background_top_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\list_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\list_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\menu_dropdown_panel_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\progress_bg_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\progress_primary_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\progress_secondary_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spinner_ab_default_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spinner_ab_disabled_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spinner_ab_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spinner_ab_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_selected_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_selected_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_selected_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_unselected_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_unselected_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_unselected_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ab_bottom_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ab_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ab_stacked_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ab_texture_tile_customactionbartheme.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ab_transparent_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\btn_cab_done_default_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\btn_cab_done_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\btn_cab_done_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\cab_background_bottom_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\cab_background_top_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\list_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\list_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\menu_dropdown_panel_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\progress_bg_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\progress_primary_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\progress_secondary_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\spinner_ab_default_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\spinner_ab_disabled_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\spinner_ab_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\spinner_ab_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_selected_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_selected_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_selected_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_unselected_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_unselected_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_unselected_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ab_bottom_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ab_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ab_stacked_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ab_texture_tile_customactionbartheme.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ab_transparent_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\btn_cab_done_default_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\btn_cab_done_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\btn_cab_done_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\cab_background_bottom_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\cab_background_top_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\list_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\list_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\menu_dropdown_panel_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\progress_bg_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\progress_primary_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\progress_secondary_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spinner_ab_default_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spinner_ab_disabled_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spinner_ab_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spinner_ab_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_selected_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_selected_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_selected_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_unselected_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_unselected_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_unselected_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ab_bottom_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ab_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ab_stacked_solid_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ab_texture_tile_customactionbartheme.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ab_transparent_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\btn_cab_done_default_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\btn_cab_done_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\btn_cab_done_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\cab_background_bottom_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\cab_background_top_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\list_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\list_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\menu_dropdown_panel_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\progress_bg_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\progress_primary_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\progress_secondary_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\spinner_ab_default_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\spinner_ab_disabled_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\spinner_ab_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\spinner_ab_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tab_selected_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tab_selected_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tab_selected_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tab_unselected_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tab_unselected_focused_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tab_unselected_pressed_customactionbartheme.9.png" />
+    <AndroidResource Include="Resources\values\styles_customactionbartheme.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_refresh.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_refresh.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_refresh.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_refresh.png" />
+    <AndroidResource Include="Resources\layout\Web.axml" />
+    <AndroidResource Include="Resources\drawable\button_bg.xml" />
+    <AndroidResource Include="Resources\drawable\list_selector.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <XamarinComponentReference Include="AndHUD">
-      <Version>1.2</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="simple-storage">
       <Version>1.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+    <XamarinComponentReference Include="xamandroidsupportv7appcompat">
+      <Version>7.18.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv4-18">
-      <InstallationInProgress>True</InstallationInProgress>
       <Version>4.18.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
@@ -136,10 +285,6 @@
     <ProjectReference Include="..\Base.Android\Base.Android.csproj">
       <Project>{8AB2BD12-44E2-4689-B3A4-CD4245941781}</Project>
       <Name>Base.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\PullToRefresharp\PullToRefresharp.Android\PullToRefresharp.Android.csproj">
-      <Project>{27583AAA-AAE8-4E01-A962-6DCE5E0E3A4B}</Project>
-      <Name>PullToRefresharp.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +299,9 @@
     <Folder Include="Resources\menu\" />
     <Folder Include="Resources\xml\" />
     <Folder Include="Resources\" />
+    <Folder Include="Providers\" />
+    <Folder Include="Receivers\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\drawable\placeholder.png" />

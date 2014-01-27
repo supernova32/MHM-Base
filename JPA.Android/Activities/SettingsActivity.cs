@@ -12,7 +12,7 @@ using Android.Preferences;
 
 namespace JPA.Android
 {
-	[Activity (Label = "Settings")]			
+	[Activity (Label = "Settings", Theme = "@style/Theme.Customactionbartheme")]			
 	public class SettingsActivity : PreferenceActivity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)

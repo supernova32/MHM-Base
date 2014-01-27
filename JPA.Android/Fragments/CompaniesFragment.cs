@@ -32,7 +32,7 @@ namespace JPA.Android
 			companiesGrid.ItemClick += (sender, e) => {
 				var comp = companies [e.Position];
 				var publications = new PublicationsFragment (false, comp.Id);
-				MainActivity.mDrawerToggle.DrawerIndicatorEnabled = false;
+				MainActivity.DrawerToggle.DrawerIndicatorEnabled = false;
 				FragmentManager.BeginTransaction ().Replace (Resource.Id.content_frame, publications).AddToBackStack (null).Commit ();
 			};
 			return layout;
@@ -41,7 +41,8 @@ namespace JPA.Android
 		public override void OnCreateOptionsMenu (IMenu menu, MenuInflater inflater)
 		{
 			menu.RemoveItem (Resource.Id.search);
-			Console.Write ("Menu Creator called");
+			menu.RemoveItem (Resource.Id.action_refresh);
+			menu.RemoveItem (Resource.Id.action_clear_history);
 		}
 	}
 }
