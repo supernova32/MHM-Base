@@ -34,6 +34,12 @@ namespace JPA.Android
 			view.FindViewById<TextView>(Resource.Id.Title).Text = pub.Title; 
 			view.FindViewById<TextView> (Resource.Id.Description).Text = pub.ShortDescription;
 			view.FindViewById<ImageView> (Resource.Id.company_image).SetImageBitmap (imgBitmap);
+			//view.FindViewById<ImageView> (Resource.Id.arrow_image).SetImageResource (Resource.Drawable.ic_arrow);
+			if (position % 2 == 0) {
+				view.SetBackgroundResource (Resource.Color.mhm_light_grey);
+			} else {
+				view.SetBackgroundResource (Resource.Color.mhm_grey);			
+			}
 			return view; 
 		}
 
