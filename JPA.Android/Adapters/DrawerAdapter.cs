@@ -18,9 +18,9 @@ namespace JPA.Android
 
 		public DrawerAdapter (Activity context) {
 			_context = context;
-			var pub = new MenuItem { Title = "Home", Image = Resource.Drawable.action_search };
+			var pub = new MenuItem { Title = "Home", Image = Resource.Drawable.ic_home };
 			items.Add (pub);
-			var comp = new MenuItem { Title = "Companies", Image = Resource.Drawable.action_search };
+			var comp = new MenuItem { Title = "Companies", Image = Resource.Drawable.ic_companies };
 			items.Add (comp);		
 		}
 
