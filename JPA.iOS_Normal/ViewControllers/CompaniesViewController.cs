@@ -4,19 +4,17 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MHMBase;
 using System.Collections.Generic;
-using SQLite;
 
 namespace JPA.iOS_Normal
 {
-	public partial class CompaniesViewController : UICollectionViewController
+	public class CompaniesViewController : UICollectionViewController
 	{
 		readonly IList<Company> _companies;
 
-		public CompaniesViewController (UICollectionViewLayout layout, SQLiteConnection db) : base (layout)
+		public CompaniesViewController (UICollectionViewLayout layout) : base (layout)
 		{
 			var parser = new CompaniesParser ();
-			_companies = parser.GetCompanies (db);
-
+			_companies = parser.Companies;
 		}
 
 
@@ -35,6 +33,11 @@ namespace JPA.iOS_Normal
 			CollectionView.RegisterNibForCell (CompaniesXibView.Nib, CompaniesXibView.Key);
 		}
 
+		public override UIStatusBarStyle PreferredStatusBarStyle ()
+		{
+			return UIStatusBarStyle.LightContent;
+		}
+
 		public override int NumberOfSections (UICollectionView collectionView)
 		{
 			// TODO: return the actual number of sections
@@ -47,7 +50,8 @@ namespace JPA.iOS_Normal
 //			var cell = collectionView.CellForItem (indexPath);
 //			cell.ContentView.BackgroundColor = UIColor.Yellow;
 			var company = _companies [indexPath.Row];
-			new UIAlertView("Full Info", company.FullName, null, "Ok", null).Show();
+			NavigationController.PushViewController (new PublicationsViewController (true, false, company.Id), true);
+			//new UIAlertView("Full Info", company.FullName, null, "Ok", null).Show();
 
 		}
 

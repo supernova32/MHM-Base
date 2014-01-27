@@ -159,6 +159,6 @@ Global
 		{E12F7990-1C97-48B2-B312-12562ACBE5C4}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = JPA.Android\JPA.Android.csproj
+		StartupItem = JPA.iOS_Normal\JPA.iOS_Normal.csproj
 	EndGlobalSection
 EndGlobal

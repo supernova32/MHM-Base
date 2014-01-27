@@ -11,13 +11,13 @@ namespace JPA.iOS_Normal
 	{
 		readonly IList<Publication> _publications; 
 		const string PublicationCell = "PublicationCell";
-		readonly UIViewController _controller;
+		readonly UINavigationController _controller;
 		readonly SQLiteConnection _db;
 
-		public PublicationsViewSource (IList<Publication> publications, UIViewController controller, SQLiteConnection db) {
+		public PublicationsViewSource (IList<Publication> publications, UINavigationController controller) {
 			_publications = publications;
 			_controller = controller;
-			_db = db;
+			_db = DatabaseHelper.Instance.Connection;
 		}
 
 		public override int NumberOfSections (UITableView tableView)
@@ -55,17 +55,15 @@ namespace JPA.iOS_Normal
 
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
-			var selectedPub = _publications[indexPath.Row];
-			new UIAlertView("Full Info", selectedPub.Company + " - " + selectedPub.FullDescription, null, "Ok", null).Show();
-			//_controller.ItemClicked (selectedPub);
+			_controller.PushViewController (new PublicationDialog (_publications[indexPath.Row]), true);
 		}
 
-		static UIImage FromUrl (string uri)
-		{
-			using (var url = new NSUrl (uri))
-			using (var data = NSData.FromUrl (url))
-				return UIImage.LoadFromData (data);
-		}
+//		static UIImage FromUrl (string uri)
+//		{
+//			using (var url = new NSUrl (uri))
+//			using (var data = NSData.FromUrl (url))
+//				return UIImage.LoadFromData (data);
+//		}
 	}
 }
 

@@ -1,6 +1,5 @@
 using System;
 using MonoTouch.UIKit;
-using SQLite;
 using MHMBase;
 
 namespace JPA.iOS_Normal
@@ -8,11 +7,9 @@ namespace JPA.iOS_Normal
 	public class SearchViewController : UITableViewController
 	{
 		readonly PublicationsParser _parser;
-		readonly SQLiteConnection _db;
 		readonly UISearchBar searchBar;
 
-		public SearchViewController (SQLiteConnection db) : base (UITableViewStyle.Grouped) {
-			_db = db;
+		public SearchViewController () : base (UITableViewStyle.Grouped) {
 			_parser = new PublicationsParser ();
 			searchBar = new UISearchBar ();
 		}
@@ -32,6 +29,11 @@ namespace JPA.iOS_Normal
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
+		public override UIStatusBarStyle PreferredStatusBarStyle ()
+		{
+			return UIStatusBarStyle.LightContent;
+		}
+
 		protected void RefineSearchItems() {
 			if (searchBar.Text == "") {
 				TableView.Source = null;
@@ -41,18 +43,21 @@ namespace JPA.iOS_Normal
 			} else {
 				if (PublicationsViewController.NetworkAvailable ()) {
 					_parser.SendSearchParameters (publications => InvokeOnMainThread (() => {
-						TableView.Source = new PublicationsViewSource (publications, this, _db);
+						TableView.Source = new PublicationsViewSource (publications, NavigationController);
 						TableView.ReloadData ();
-					}), searchBar.Text);
+					}), searchBar.Text, state => InvokeOnMainThread (() => { 
+						var alert = new UIAlertView ("Error".t(), "ErrorMessage".t(), null, "Ok", null);
+						//alert.Clicked += (sender, e) => UIApplication.SharedApplication.PerformSelector(new Selector("terminateWithSuccess"), null, 0f);
+						alert.Show ();
+					}));
 				} else {
 					_parser.LocalSearch (publications => InvokeOnMainThread (() => {
-						TableView.Source = new PublicationsViewSource (publications, this, _db);
+						TableView.Source = new PublicationsViewSource (publications, NavigationController);
 						TableView.ReloadData ();
 					}), searchBar.Text);
 				}			
 			}			
 		}
-
 	}
 }
 

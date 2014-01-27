@@ -4,17 +4,24 @@
 "DLoad"="Downloading Jobs";
 "Wait"="Please wait...";
 "Header"="Top 100";
+"Apply"="Apply Now!";
+"ByCompany"="By Company";
 
 
 
 //Companies Strings
 "CompaniesTitle"="Available Companies";
 
+//Error
+"Error"="Network Error";
+"ErrorMessage"="Connection Error! Please try again.";
+
 
 
 //LeftMenu Strings
 "Navigation"="Navigation";
 "Home"="Home";
+"Menu"="Menu";
 
 //Settings Strings
 "Settings"="Settings";
@@ -24,4 +31,5 @@
 //Search Strings
 "Search"="Search";
 "Network"="Network not available";
+"NetworkS"="Network";
 "NetworkMessage"="Please connect to the internet in order to proceed";

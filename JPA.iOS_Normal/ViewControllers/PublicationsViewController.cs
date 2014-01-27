@@ -2,6 +2,8 @@ using System.Drawing;
 using MonoTouch.UIKit;
 using MHMBase;
 using SQLite;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace JPA.iOS_Normal
 {
@@ -11,14 +13,14 @@ namespace JPA.iOS_Normal
 		bool showingSplashEarlier = false;
 		bool _fromMenu = false;
 		readonly PublicationsParser _parser;
-		readonly SQLiteConnection _db;
+		int _companyId;
 
-		public PublicationsViewController (bool skipSplash, SQLiteConnection db, bool fromMenu = false) : base (UITableViewStyle.Plain)
+		public PublicationsViewController (bool skipSplash, bool fromMenu = false, int companyId = 0) : base (UITableViewStyle.Plain)
 		{
 			_parser = new PublicationsParser ();
 			showingSplashEarlier = skipSplash;
 			_fromMenu = fromMenu;
-			_db = db;
+			_companyId = companyId;
 		}
 
 		#region Modal view controller methods
@@ -45,6 +47,8 @@ namespace JPA.iOS_Normal
 					LoadTable (false);
 				};
 				ShowModalVC (splash, false);
+			} else if (_companyId != 0) {
+				FilterByCompany (_companyId);
 			} else {
 				LoadTable (showingSplashEarlier);
 			}
@@ -61,7 +65,7 @@ namespace JPA.iOS_Normal
 				RefreshTable (loading);
 			} else if (_fromMenu) {
 				var publications = _parser.Publications;
-				TableView.Source = new PublicationsViewSource (publications, this, _db);
+				TableView.Source = new PublicationsViewSource (publications, NavigationController);
 				TableView.ReloadData ();
 			} else {
 				RefreshTable ();			
@@ -71,10 +75,19 @@ namespace JPA.iOS_Normal
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			Title = "LatestJobTitle".t();
 			TableView.BackgroundColor = UIColor.FromWhiteAlpha(0.95f, 1.0f);
-			RefreshControl = new UIRefreshControl ();
-			RefreshControl.ValueChanged += (sender, e) => RefreshTable ();
+			if (_companyId == 0) {
+				Title = "LatestJobTitle".t ();
+				RefreshControl = new UIRefreshControl ();
+				RefreshControl.ValueChanged += (sender, e) => RefreshTable ();
+			} else {
+				Title = "ByCompany".t ();			
+			}
+		}
+
+		public override UIStatusBarStyle PreferredStatusBarStyle ()
+		{
+			return UIStatusBarStyle.LightContent;
 		}
 
 		public static bool NetworkAvailable() {
@@ -82,17 +95,30 @@ namespace JPA.iOS_Normal
 			return status != NetworkStatus.NotReachable;
 		}
 
+		void FilterByCompany (int companyId)
+		{
+			var dbHelper = DatabaseHelper.Instance;
+			var company = dbHelper.Connection.Get<Company> (companyId);
+			var publications = dbHelper.Connection.Table<Publication> ().Where (p => p.Company.Equals (company.Name)).ToList ();
+			TableView.Source = new PublicationsViewSource (publications, NavigationController);
+			TableView.ReloadData ();
+		}
+
 		public void RefreshTable(UIAlertView loading = null) {
 			if (NetworkAvailable ()) {
 				_parser.UpdatePublications(publications => InvokeOnMainThread (() => {
-					TableView.Source = new PublicationsViewSource (publications, this, _db);
+					TableView.Source = new PublicationsViewSource (publications, NavigationController);
 					TableView.ReloadData ();
 					if (loading != null)
 						loading.DismissWithClickedButtonIndex (0, true);
+				}), state => InvokeOnMainThread (() => { 
+					var alert = new UIAlertView ("Error".t(), "ErrorMessage".t(), null, "Ok", null);
+					//alert.Clicked += (sender, e) => UIApplication.SharedApplication.PerformSelector(new Selector("terminateWithSuccess"), null, 0f);
+					alert.Show ();
 				}));			
 			} else {
 				var publications = _parser.Publications;
-				TableView.Source = new PublicationsViewSource (publications, this, _db);
+				TableView.Source = new PublicationsViewSource (publications, NavigationController);
 				TableView.ReloadData ();
 				if (loading != null)
 					loading.DismissWithClickedButtonIndex (0, true);

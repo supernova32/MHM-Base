@@ -17,7 +17,7 @@ namespace JPA.iOS_Normal
 		{
 			var storage = SimpleStorage.EditGroup("preferences");
 			Root = new RootElement ("Settings".t ());
-			_network = new Section ("Network".t ());
+			_network = new Section ("NetworkS".t ());
 			var notification = storage.Get ("notifications");
 			_notifications = new BooleanElement ("NotificationsAllow".t (), Convert.ToBoolean (notification));
 			_notifications.ValueChanged += (sender, e) => {

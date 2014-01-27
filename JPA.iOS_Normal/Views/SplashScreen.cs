@@ -64,7 +64,11 @@ namespace JPA.iOS_Normal
 					storage.Put ("companies_exist", "True");
 				aiSplash.StopAnimating ();
 				OnReady.Invoke ();
-			}), DatabaseHelper.Instance.Connection);
+			}), status => InvokeOnMainThread (() => {
+				var alert = new UIAlertView ("Network".t(), "NetworkMessage".t(), null, "Ok", null);
+				alert.Clicked += (sender, e) => UIApplication.SharedApplication.PerformSelector(new Selector("terminateWithSuccess"), null, 0f);
+				alert.Show ();
+			}));
 		}
 	}
 }

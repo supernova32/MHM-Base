@@ -24,6 +24,9 @@
     <MtouchLink>None</MtouchLink>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -47,7 +50,8 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Armin Mendle (Q685J4X4EU)</CodesignKey>
+    <CodesignProvision>AEC0AE02-28BA-4AA6-A598-266B00F0170F</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -96,10 +100,27 @@
     <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Images\splash.png" />
     <BundleResource Include="Images\menu.png" />
     <BundleResource Include="Images\placeholder.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-72%402x.png" />
+    <BundleResource Include="Resources\Icon-76.png" />
+    <BundleResource Include="Resources\Icon-76%402x.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-50.png" />
+    <BundleResource Include="Resources\Icon-Small-50%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
+    <BundleResource Include="Images\ic_companies.png" />
+    <BundleResource Include="Images\ic_home.png" />
+    <BundleResource Include="Images\menu_old.png" />
+    <BundleResource Include="Images\splash_old.png" />
+    <BundleResource Include="Images\ic_search.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -118,10 +139,6 @@
     <Compile Include="Services\Reachability.cs" />
     <Compile Include="Services\Extension.cs" />
     <Compile Include="ViewControllers\CompaniesViewController.cs" />
-    <Compile Include="ViewControllers\CompaniesViewController.designer.cs">
-      <DependentUpon>CompaniesViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewCells\CompaniesViewCell.cs" />
     <Compile Include="Layouts\CompaniesLayout.cs" />
     <Compile Include="ViewCells\CompaniesXibView.cs" />
     <Compile Include="ViewCells\CompaniesXibView.designer.cs">
@@ -130,6 +147,13 @@
     <Compile Include="Views\LeftMenu.cs" />
     <Compile Include="Views\Settings.cs" />
     <Compile Include="ViewControllers\SearchViewController.cs" />
+    <Compile Include="ViewControllers\PublicationViewController.cs" />
+    <Compile Include="ViewControllers\PublicationViewController.designer.cs">
+      <DependentUpon>PublicationViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\TokenHandler.cs" />
+    <Compile Include="ViewControllers\PublicationDialog.cs" />
+    <Compile Include="ViewControllers\WebViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -143,10 +167,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="ViewControllers\CompaniesViewController.xib" />
     <InterfaceDefinition Include="ViewCells\CompaniesXibView_iPhone.xib" />
     <InterfaceDefinition Include="ViewCells\CompaniesXibView_iPad.xib" />
     <InterfaceDefinition Include="Views\SplashScreen.xib" />
+    <InterfaceDefinition Include="ViewControllers\PublicationViewController_iPhone.xib" />
+    <InterfaceDefinition Include="ViewControllers\PublicationViewController_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewCells\" />
