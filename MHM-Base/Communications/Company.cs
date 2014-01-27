@@ -12,7 +12,6 @@ namespace MHMBase
 		public string FullName { get; set; }
 		public string IconPath { get; set; }
 		public string IconUrl { get; set; }
-
 	}
 }
 
